@@ -4,10 +4,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Boolean waitingForInput = true;
+       boolean waitingForInput = true;
+        Userinterface vi = new Userinterface();
 
         while (waitingForInput) {
-            Userinterface vi = new Userinterface();
+
 
             try {
                 vi.EnterInteger();

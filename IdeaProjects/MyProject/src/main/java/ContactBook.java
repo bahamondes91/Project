@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class ContactBook {
 
@@ -10,23 +11,29 @@ public ContactBook(){
 }
 public  void contactAdd(Contact b){
     listOfContacts.add(b);
-    System.out.println(listOfContacts);
+
 
 }
 
 
+    public void removeContact(Contact contact) {
+   listOfContacts.remove(contact);
+        System.out.println("du är i removecontact metoden");
+    }
 
-    public List getListOfContacts() {
+
+
+
+    public List getListOfContacts(){
         printListOfContacts(listOfContacts);
-        System.out.println("du är i getlist");
         return listOfContacts;
     }
 
-    public void printListOfContacts(List<Contact>listOfContacts) {
-        System.out.println("du är i metoden printListOfContacts");
+    public void printListOfContacts(List<Contact>listOfContacts){
+        System.out.println("--My Contactlist--");
         for (Contact contact : listOfContacts) {
             System.out.println(contact.toString());
-            System.out.println("du är i for loopen!");
+
         }
     }
 
