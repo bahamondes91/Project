@@ -1,20 +1,22 @@
+import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-       boolean waitingForInput = true;
-        Userinterface vi = new Userinterface();
 
+       Boolean waitingForInput = true;
         while (waitingForInput) {
-
+            Userinterface vi = new Userinterface();
 
             try {
                 vi.EnterInteger();
 
 
-            }catch (InputMismatchException ex){
+
+            }catch (InputMismatchException | IOException ex){
                 System.out.println(ex.getMessage());
             }
         }

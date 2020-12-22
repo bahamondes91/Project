@@ -1,28 +1,33 @@
-import com.sun.tools.javac.Main;
 
-import javax.xml.namespace.QName;
+
+import java.io.IOException;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.Scanner;
-import java.util.concurrent.Callable;
 
 public class Userinterface {
 
-    ContactBook vi = new ContactBook();
-    Scanner scanner = new Scanner(System.in);
+   static ContactBook vi = new ContactBook();
+   static Scanner scanner = new Scanner(System.in);
+   static CreateFile createFile = new CreateFile();
+   static ReadFile readFile = new ReadFile();
 
-    public void EnterInteger(){
+
+    public void EnterInteger() throws IOException {
         Scanner scanner = new Scanner(System.in);
+
         Integer input;
+
 
 
         try {
 
-            System.out.println("-----");
+            System.out.println("----------------");
+            System.out.println("---MENU---");
             System.out.println("1. Add contact.");
             System.out.println("2. Show contact.");
             System.out.println("3. Remove contact.");
             System.out.println("4. Exit program");
+
 
             input = scanner.nextInt();
 
@@ -35,32 +40,39 @@ public class Userinterface {
                 addContact();
                 break;
             case 2:
-                show();
+                show2();
                 break;
             case 3:
                 removeContact();
                 break;
             case 4:
-
+             System.exit(4);
                 break;
 
         }
 
 
+
     }
 
     public void addContact(){
+        System.out.println("how many contacts do you wanna add?");
+        int people = scanner.nextInt();
+        scanner.nextLine();
 
+        for (int i = 0; i <people ; i++) {
+            System.out.println("Name: ");
+            String name = scanner.nextLine();
 
+            System.out.println("Email: ");
+            String email = scanner.nextLine();
+            Contact b = new Contact(name,email);
 
-        System.out.println("Name: ");
-        String name = scanner.nextLine();
+            vi.contactAdd(b);
 
-        System.out.println("Email: ");
-        String email = scanner.nextLine();
-        Contact b = new Contact(name,email);
+        }
 
-        vi.contactAdd(b);
+        vi.saveData();
 
 
     }
@@ -69,15 +81,20 @@ public class Userinterface {
         System.out.println("Name: ");
         String name = scanner.nextLine();
         Contact b = new Contact(name,"");
-
         vi.removeContact(b);
 
     }
 
-    public void show(){
 
-       vi.getListOfContacts();
+
+    public void show2() throws IOException {
+        vi.readdata();
     }
+
+
+
+
+
 
 
 }

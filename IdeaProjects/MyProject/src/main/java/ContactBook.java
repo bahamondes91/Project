@@ -1,10 +1,13 @@
+
+import java.io.*;
 import java.util.ArrayList;
+
 import java.util.List;
-import java.util.concurrent.Callable;
+
 
 public class ContactBook {
 
-    private  List listOfContacts = new ArrayList<Contact>();
+    private  List<Contact> listOfContacts = new ArrayList<>();
 
 public ContactBook(){
 
@@ -14,15 +17,22 @@ public  void contactAdd(Contact b){
 
 
 }
+public void removeContact(Contact contact) {
+        removeContact(contact.getName());
 
-
-    public void removeContact(Contact contact) {
-   listOfContacts.remove(contact);
-        System.out.println("du är i removecontact metoden");
     }
 
+    public void removeContact(String name) {
 
+     for (Contact contact:listOfContacts){
+       if (contact.getName().equals(name)) {
+          listOfContacts.remove(contact);
+           System.out.println(contact);
+       }
 
+     }
+
+}
 
     public List getListOfContacts(){
         printListOfContacts(listOfContacts);
@@ -37,6 +47,32 @@ public  void contactAdd(Contact b){
         }
     }
 
+    public void saveData() {
+        try {
+            File newTextFile = new File("textfile.txt");
+            PrintStream fw = new PrintStream(newTextFile);
+
+            for (Contact contact: listOfContacts){
+                fw.println(contact);
+            }
+
+            fw.close();
+
+        } catch (IOException io) {
+            io.printStackTrace();
+        }
+
+    }
+    public void readdata() throws IOException {
+
+        File file = new File("textfile.txt");
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line;
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);;
+        }
+        reader.close();
+    }
 
 
 }
