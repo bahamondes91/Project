@@ -23,14 +23,41 @@ public void removeContact(Contact contact) {
     }
 
     public void removeContact(String name) {
-
-     for (Contact contact:listOfContacts){
+      Contact deleteContact = null;
+      for (Contact contact:listOfContacts){
        if (contact.getName().equals(name)) {
-          listOfContacts.remove(contact);
+          deleteContact = contact;
            System.out.println(contact);
        }
 
-     }
+      }
+      if (deleteContact != null){
+          System.out.println("Deleting contact: " + deleteContact.getName());
+          listOfContacts.remove(deleteContact);
+      }else {
+          System.out.println("Contact not found!");
+      }
+
+}
+
+public void searchContact(Contact contact){
+    search(contact.getName());
+}
+public void search(String name){
+    List<Contact> result = new ArrayList<>();
+   for (Contact b: listOfContacts){
+       if (b.getName().contains(name) || b.getEmail().contains(name)){
+           result.add(b);
+       }
+   }
+   if (!result.isEmpty()){
+       System.out.println("----found result----");
+       for (Contact b: result){
+           System.out.println("Name: " + b.getName() + " Email " + b.getEmail());
+       }
+   } else{
+       System.out.println("No result with: " + name);
+   }
 
 }
 

@@ -8,8 +8,6 @@ public class Userinterface {
 
    static ContactBook vi = new ContactBook();
    static Scanner scanner = new Scanner(System.in);
-   static CreateFile createFile = new CreateFile();
-   static ReadFile readFile = new ReadFile();
 
 
     public void EnterInteger() throws IOException {
@@ -25,8 +23,10 @@ public class Userinterface {
             System.out.println("---MENU---");
             System.out.println("1. Add contact.");
             System.out.println("2. Show contact.");
-            System.out.println("3. Remove contact.");
-            System.out.println("4. Exit program");
+            System.out.println("3. Show saved contact.");
+            System.out.println("4. Remove contact.");
+            System.out.println("5. Search contact");
+            System.out.println("6. Exit program");
 
 
             input = scanner.nextInt();
@@ -40,12 +40,19 @@ public class Userinterface {
                 addContact();
                 break;
             case 2:
-                show2();
+                showContact();
                 break;
             case 3:
-                removeContact();
+                showSavedContact();
                 break;
             case 4:
+                removeContact();
+                break;
+            case 5:
+                searchContact();
+                break;
+            case 6:
+                System.out.println("Shutting down...");
              System.exit(4);
                 break;
 
@@ -81,14 +88,28 @@ public class Userinterface {
         System.out.println("Name: ");
         String name = scanner.nextLine();
         Contact b = new Contact(name,"");
+
         vi.removeContact(b);
 
     }
 
+    public void searchContact(){
+    System.out.println("Name: ");
+    String name = scanner.nextLine();
+    System.out.println("Email: ");
+    String email = scanner.nextLine();
+    Contact b = new Contact(name,email);
 
+    vi.searchContact(b);
 
-    public void show2() throws IOException {
-        vi.readdata();
+}
+
+    public void showContact(){
+        vi.getListOfContacts();
+}
+
+    public void showSavedContact() throws IOException {
+       vi.readdata();
     }
 
 
